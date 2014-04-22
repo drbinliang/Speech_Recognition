@@ -40,8 +40,9 @@ def training(speechList):
                 speechRecognizer.trainData.append(speech.features)
         
         # get hmm model
-        speechRecognizer.initModelParam(nComp = 10, nMix = 2, \
-                                        covarianceType = 'diag', n_iter = 10)
+        speechRecognizer.initModelParam(nComp = 5, nMix = 2, \
+                                        covarianceType = 'diag', n_iter = 10, \
+                                        bakisLevel = 2)
         speechRecognizer.getHmmModel()
     
     return speechRecognizerList
