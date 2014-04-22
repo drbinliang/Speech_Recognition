@@ -36,8 +36,8 @@ class SpeechRecognizer:
     def getHmmModel(self):
         ''' get hmm model from training data '''
         
-        numMix = 2
-        model = hmm.GaussianHMM(numMix, "diag") # initialize hmm model
+        numStates = 10
+        model = hmm.GaussianHMM(numStates, "diag") # initialize hmm model
         model.fit(self.trainData)   # get optimal parameters
         self.hmmModel = model
         
