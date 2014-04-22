@@ -78,7 +78,7 @@ class SpeechRecognizer:
 #         model = hmm.GaussianHMM(numStates, "diag") # initialize hmm model
 
         # Gaussian Mixture HMM
-        model = hmm.GMMHMM(self.nComp, self.nMix, \
+        model = hmm.GMMHMM(n_components = self.nComp, n_mix = self.nMix, \
                            covariance_type = self.covarianceType, n_iter = self.n_iter)
         model.fit(self.trainData)   # get optimal parameters
         self.hmmModel = model
