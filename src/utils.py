@@ -3,9 +3,9 @@ Created on 10/04/2014
 
 @author: Bin Liang
 '''
-from sklearn import hmm
 from scikits.talkbox.features import mfcc
 from scipy.io import wavfile
+from hmmlearn import hmm
 
 class Speech:
     ''' speech class '''
@@ -36,8 +36,8 @@ class SpeechRecognizer:
     def getHmmModel(self):
         ''' get hmm model from training data '''
         
-        numStates = 10
-        model = hmm.GaussianHMM(numStates, "diag") # initialize hmm model
+        numMix = 2
+        model = hmm.GaussianHMM(numMix, "diag") # initialize hmm model
         model.fit(self.trainData)   # get optimal parameters
         self.hmmModel = model
         
