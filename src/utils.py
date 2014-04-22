@@ -38,8 +38,8 @@ class SpeechRecognizer:
         self.nMix = 2   # number of mixtures
         self.covarianceType = 'diag'    # covariance type
         self.n_iter = 10    # number of iterations
-        self.startprob = None
-        self.transmat = None
+        self.startprobPrior = None
+        self.transmatPrior = None
         self.bakisLevel = 2
         
     def initModelParam(self, nComp, nMix, covarianceType, n_iter, bakisLevel):
@@ -51,9 +51,9 @@ class SpeechRecognizer:
         self.n_iter = n_iter    # number of iterations
         self.bakisLevel = bakisLevel
         
-        startprob, transmat = self.initByBakis(nComp, bakisLevel)
-        self.startprob = startprob
-        self.transmat = transmat
+        startprobPrior, transmatPrior = self.initByBakis(nComp, bakisLevel)
+        self.startprobPrior = startprobPrior
+        self.transmatPrior = transmatPrior
     
     def initByBakis(self, nComp, bakisLevel):
         ''' init start_prob and transmat_prob by Bakis model ''' 
@@ -86,7 +86,7 @@ class SpeechRecognizer:
 
         # Gaussian Mixture HMM
         model = hmm.GMMHMM(n_components = self.nComp, n_mix = self.nMix, \
-                           transmat_prior = self.transmat, startprob_prior = self.startprob, \
+                           transmat_prior = self.transmatPrior, startprob_prior = self.startprobPrior, \
                            covariance_type = self.covarianceType, n_iter = self.n_iter)
         model.fit(self.trainData)   # get optimal parameters
             
