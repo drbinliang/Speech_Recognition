@@ -89,7 +89,7 @@ class SpeechRecognizer:
                            transmat_prior = self.transmatPrior, startprob_prior = self.startprobPrior, \
                            covariance_type = self.covarianceType, n_iter = self.n_iter)
         model.fit(self.trainData)   # get optimal parameters
-            
+
         self.hmmModel = model
         
     
